@@ -5,7 +5,8 @@ from fractions import Fraction
 from math import acos
 from math import ceil
 from math import floor
-from math import sin
+
+import numpy as np
 
 
 class Vecteur:
@@ -320,19 +321,17 @@ class Vecteur:
         """
         if isinstance(other, Vecteur):
             if other.dimension == self.dimension:
-                if not self // other:
-                    if self.dim == 3:
-                        # verifier que les deux vecteurs ne soient pas colinéaire
-                        if not self // other:
-                            pass
-                            # return self.norme * other.norme * sin(self.angle(other))
+                if self.dim == 3:
 
-                        return NotImplemented
+                    vec1: np.array = np.array([self.x, self.y, self.z], dtype=float)
+                    vec2: np.array = np.array([other.x, other.y, other.z], dtype=float)
 
-                    else:
-                        raise TypeError("Les deux vecteurs doivent être en 3 dimensions")
+                    vec_prod = np.cross(vec1, vec2)
+
+                    return Vecteur(vec_prod[0], vec_prod[1], vec_prod[2])
+
                 else:
-                    raise ValueError("Les deux vecteurs sont colinéaire. On ne peut pas faire de produit vectoriel")
+                    raise TypeError("Les deux vecteurs doivent être en 3 dimensions")
             else:
                 raise TypeError("Les deux vecteurs doivent être de même dimension")
         else:
@@ -453,3 +452,10 @@ class Vecteur:
             return Vecteur(x, y, z)
 
         return Vecteur(x, y)
+
+
+if __name__ == '__main__':
+    u = Vecteur(1, 2, 3)
+    v = Vecteur(4, 5, 6)
+
+    print(u ^ v)
