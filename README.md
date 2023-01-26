@@ -148,13 +148,14 @@ a = 5.3
 u *= 5.3
 ```
 
-### Produit vecttoriel (Non implémenté) :
+### Produit vecttoriel :
 ```python
 w = u ^ v
 ```
 
 Remarque : 
 Le produit vectoriel ne fonctionne qu'avec des vecteurs en 3 dimensions 
+Le produit vectoriel ne fonctionne pas avec des fraction et utilise le module NumPy
 
 ### Vecteur négatif :
 ```python
