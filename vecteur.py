@@ -322,9 +322,12 @@ class Vecteur:
             if other.dimension == self.dimension:
                 if not self // other:
                     if self.dim == 3:
-                        # verifier que les deux vecteurs ne soient pas collinéaire
+                        # verifier que les deux vecteurs ne soient pas colinéaire
                         if not self // other:
-                            return self.norme * other.norme * sin(self.angle(other))
+                            pass
+                            # return self.norme * other.norme * sin(self.angle(other))
+
+                        return NotImplemented
 
                     else:
                         raise TypeError("Les deux vecteurs doivent être en 3 dimensions")
@@ -450,10 +453,3 @@ class Vecteur:
             return Vecteur(x, y, z)
 
         return Vecteur(x, y)
-
-
-if __name__ == '__main__':
-    u = Vecteur(0, 1)
-    v = Vecteur(1, 0)
-    u ^ v
-    print("vect : ", u.angle(v))
